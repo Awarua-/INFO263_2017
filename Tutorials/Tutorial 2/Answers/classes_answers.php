@@ -2,6 +2,7 @@
 	require_once("Item_answers.php");
     require_once("ItemQuantised_answers.php");
 	// Start a session before handling any html.
+    session_name('classes');
 	session_start();
 ?>
 <!DOCTYPE html>
@@ -15,11 +16,20 @@
         Submit items to be added to the shopping list
     </p>
     <form method='post' action='classes_answers.php' enctype='multipart/form-data'>
-        New item:</br>
+        New item:<br>
             <input type='hidden' name='add' value='1' />
-            Name: <input type='text' name='name' size='10' />
-            Price: $<input type='number' name='price' size='5' value='1' step='any' />
-            Quantity: <input type='number' name='quantity' value="1" size='5' step='any'/>
+        <label>
+            Name:
+            <input type='text' name='name' size='10'/>
+        </label>
+        <label>
+            Price: $
+            <input type='number' name='price' size='5' value='1' step='any'/>
+        </label>
+        <label>
+            Quantity:
+            <input type='number' name='quantity' value="1" size='5' step='any'/>
+        </label>
             <?php
                 $refl = new ReflectionClass('ItemQuantised');
                 $types = $refl->getConstants();
@@ -31,13 +41,16 @@
 
         <input type='submit' value='Add' />
     </form>
-</br>
+    <br>
     <form method="post" action="classes_answers.php" enctype="multipart/form-data">
-    	Remove item: <input type="text" name="remove" size=10 />
+        <label>
+            Remove item:
+            <input type="text" name="remove" size=10/>
+        </label>
     	<input type="submit" value="Remove" />
     </form>
 
-</br>
+    <br>
 <form method="post" action="classes_answers.php" enctype="multipart/form-data">
     <input type="hidden" name="clear" value="1" />
     <input type="submit" value="Clear All" />
@@ -124,7 +137,7 @@
             $total = 0;
         	foreach ($array as $item)
             {
-                echo $item->display() . "</br>";
+                echo $item->display() . "<br>";
                 $total += $item->calculate_cost();
             }
 
@@ -133,8 +146,11 @@
         	// END STUDENT SECTION
         }
 
-        $_SESSION['groceries'] = $groceries;
+
         printItems($groceries);
+
+        $_SESSION['groceries'] = $groceries;
+        session_write_close();
     ?>
 </body>
 </html>

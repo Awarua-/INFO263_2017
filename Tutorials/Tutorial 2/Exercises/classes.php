@@ -1,6 +1,7 @@
 <?php
 	require_once("Item.php");
 	// Start a session before handling any html.
+    session_name('classes');
 	session_start();
 ?>
 <!DOCTYPE html>
@@ -14,15 +15,21 @@
         Submit items to be added to the shopping list
     </p>
     <form method='post' action='classes.php' enctype='multipart/form-data'>
-        New item:</br>
+        New item:<br>
             <input type='hidden' name='add' value='1' />
-            Name: <input type='text' name='name' size='10' />
+        <label>
+            Name:
+            <input type='text' name='name' size='10'/>
+        </label>
 			<!-- add price and quantity form parameters. -->
         <input type='submit' value='Add' />
     </form>
-</br>
+    <br>
     <form method="post" action="classes.php" enctype="multipart/form-data">
-    	Remove item: <input type="text" name="remove" size=10 />
+        <label>
+            Remove item:
+            <input type="text" name="remove" size=10/>
+        </label>
     	<input type="submit" value="Remove" />
     </form>
 
@@ -99,8 +106,10 @@
         	echo "</pre>"; //Leave for display method to print properly
         }
 
-        $_SESSION['groceries'] = $groceries;
         printItems($groceries);
+
+        $_SESSION['groceries'] = $groceries;
+        session_write_close();
     ?>
 </body>
 </html>

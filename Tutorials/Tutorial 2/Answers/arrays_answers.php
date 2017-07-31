@@ -1,5 +1,6 @@
 <?php
 	// Start a session before handling any html.
+    session_name('arrays');
 	session_start();
 ?>
 <!DOCTYPE html>
@@ -13,12 +14,18 @@
         Submit items to be added to the shopping list
     </p>
     <form method='post' action='arrays_answers.php' enctype='multipart/form-data'>
-        New item: <input type='text' name='add' size='10' />
+        <label>
+            New item:
+            <input type='text' name='add' size='10'/>
+        </label>
         <input type='submit' value='Add' />
     </form>
-    <span></span>
+    <br>
     <form method="post" action="arrays_answers.php" enctype="multipart/form-data">
-    	Remove item: <input type="text" name="remove" size=10 />
+        <label>
+            Remove item:
+            <input type="text" name="remove" size=10/>
+        </label>
     	<input type="submit" value="Remove" />
     </form>
 
@@ -77,7 +84,7 @@
 
         	for($i = 0; $i < count($array); $i++)
         	{
-        		echo $array[$i] . "</br>";
+        		echo $array[$i] . "<br>";
         	}
         	// END STUDENT SECTION
         }
@@ -106,8 +113,11 @@
         	// END STUDENT SECTION
         }
 
-        $_SESSION['groceries'] = $groceries;
+
         printItems($groceries);
+
+        $_SESSION['groceries'] = $groceries;
+        session_write_close();
     ?>
 </body>
 </html>
