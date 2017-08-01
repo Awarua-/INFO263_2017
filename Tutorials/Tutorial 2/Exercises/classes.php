@@ -33,6 +33,8 @@
     	<input type="submit" value="Remove" />
     </form>
 
+<!--    Add a clear all form-->
+
 	<h2>Shopping List</h2>
     <?php
 
@@ -53,7 +55,7 @@
         	$newItem = createItem($_POST);
             if (!is_null($newItem))
             {
-        	       $groceries[$newItem->get_name()] = $newItem;
+        	       // add new item to associative array.
             }
         }
 
@@ -70,10 +72,7 @@
 
         function removeAll($items, $array)
         {
-        	foreach ($items as $item)
-        	{
-	            unset($array["{$item}"]);
-        	}
+        	// remove items from array.
         	return $array;
         }
 
@@ -98,6 +97,7 @@
         {
         	echo "<pre>"; //Leave for display method to print properly
 
+            // Fix me
 			for($i = 0; $i < count($array); $i++)
         	{
         		//echo $array[$i] . "</br>";

@@ -1,10 +1,13 @@
 <?php
 class Item
 {
+    // Add missing fields.
+
 
     public function __construct($name, $price, $quantity)
     {
-        return;
+        // Complete the constructor
+        return; // remove
     }
 
     public function display()
@@ -14,6 +17,7 @@ class Item
 
     public function calculate_cost()
     {
+        // Complete the function so that it returns the cost for the number of items.
         return 0;
     }
     

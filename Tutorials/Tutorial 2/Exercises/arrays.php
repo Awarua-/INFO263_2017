@@ -21,6 +21,8 @@
         <input type='submit' value='Add' />
     </form>
 
+    <!-- Add Remove form.-->
+
 	<h2>Shopping List</h2>
     <?php
 

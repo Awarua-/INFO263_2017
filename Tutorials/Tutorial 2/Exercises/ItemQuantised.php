@@ -6,13 +6,14 @@ class ItemQuantised extends Item
     const GRAM = "g";
     const KILOGRAM = "Kg";
     const LITRE = "L";
-    const MILILITER = "ml";
+    const MILLILITER = "ml";
 
     protected $units = self::GRAM;
 
     public function __construct($name, $price, $quantity, $units)
     {
-        return;
+        // Complete the constructor
+        return; //remove
     }
 
     public function display()

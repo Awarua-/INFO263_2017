@@ -31,6 +31,7 @@
             <input type='number' name='quantity' value="1" size='5' step='any'/>
         </label>
             <?php
+            // This is magic, don't worry about if you have no idea how it works.
                 $refl = new ReflectionClass('ItemQuantised');
                 $types = $refl->getConstants();
                 foreach($types as $name => $symbol)
