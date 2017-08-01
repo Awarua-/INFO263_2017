@@ -20,10 +20,16 @@ class Item
         // Complete the function so that it returns the cost for the number of items.
         return 0;
     }
-    
+
     public function get_name()
     {
         return $this->name;
     }
+}
+
+if (!debug_backtrace()) {
+    // do useful stuff
+    $item = new Item("milk", 2.50, 2);
+    echo $item->display();
 }
  ?>

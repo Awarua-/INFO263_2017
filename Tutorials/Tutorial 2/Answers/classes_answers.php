@@ -11,7 +11,7 @@
     <title>Classes Form</title>
 </head>
 <body>
-    <h1>Groceries</h1>
+    <h1>Items</h1>
     <p>
         Submit items to be added to the shopping list
     </p>
@@ -30,6 +30,8 @@
             Quantity:
             <input type='number' name='quantity' value="1" size='5' step='any'/>
         </label>
+		<label>
+			Type:
             <?php
             // This is magic, don't worry about if you have no idea how it works.
                 $refl = new ReflectionClass('ItemQuantised');
@@ -39,6 +41,7 @@
                     echo "<input type='radio' name='type' value='{$name}' /> {$symbol}";
                 }
             ?>
+		</label>
 
         <input type='submit' value='Add' />
     </form>
@@ -60,16 +63,16 @@
 	<h2>Shopping List</h2>
     <?php
 
-		if (isset($_SESSION['groceries']))
+		if (isset($_SESSION['shopping_list']))
 		{
-			$groceries = $_SESSION['groceries'];
+			$shopping_list = $_SESSION['shopping_list'];
 		}
 		else
 		{
             $milk = new Item("milk", 2.00, 1);
             $bread = new Item("bread", 2.50, 2);
             $oranges = new ItemQuantised("oranges", 1.80, 2.00, ItemQuantised::KILOGRAM);
-			$groceries = array($milk->get_name() => $milk,
+			$shopping_list = array($milk->get_name() => $milk,
                                 $bread->get_name() => $bread,
                                 $oranges->get_name() => $oranges);
 		}
@@ -79,19 +82,19 @@
         	$newItem = createItem($_POST);
             if (!is_null($newItem))
             {
-        	       $groceries[$newItem->get_name()] = $newItem;
+        	       $shopping_list[$newItem->get_name()] = $newItem;
             }
         }
 
         if(isset($_POST['remove']))
         {
         	$itemsToRemove = extractItems($_POST['remove']);
-  			$groceries = removeAll($itemsToRemove, $groceries);
+  			$shopping_list = removeAll($itemsToRemove, $shopping_list);
         }
 
         if(isset($_POST['clear']))
         {
-            $groceries = array();
+            $shopping_list = array();
         }
 
         function removeAll($items, $array)
@@ -148,9 +151,9 @@
         }
 
 
-        printItems($groceries);
+        printItems($shopping_list);
 
-        $_SESSION['groceries'] = $groceries;
+        $_SESSION['shopping_list'] = $shopping_list;
         session_write_close();
     ?>
 </body>

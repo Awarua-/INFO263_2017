@@ -9,7 +9,7 @@
     <title>Array's Form</title>
 </head>
 <body>
-    <h1>Groceries</h1>
+    <h1>Items</h1>
     <p>
         Submit items to be added to the shopping list
     </p>
@@ -32,25 +32,25 @@
 	<h2>Shopping List</h2>
     <?php
 
-		if (isset($_SESSION['groceries']))
+		if (isset($_SESSION['shopping_list']))
 		{
-			$groceries = $_SESSION['groceries'];
+			$shopping_list = $_SESSION['shopping_list'];
 		}
 		else
 		{
-			$groceries = array("milk", "bread", "oranges");
+			$shopping_list = array("milk", "bread", "oranges");
 		}
 
         if(isset($_POST['add']))
         {
         	$newItems = extractItems($_POST['add']);
-        	$groceries = array_merge($newItems, $groceries);
+        	$shopping_list = array_merge($newItems, $shopping_list);
         }
 
         if(isset($_POST['remove']))
         {
         	$itemsToRemove = extractItems($_POST['remove']);
-  			$groceries = removeAll($itemsToRemove, $groceries);
+  			$shopping_list = removeAll($itemsToRemove, $shopping_list);
         }
 
         function removeAll($items, $array)
@@ -114,9 +114,9 @@
         }
 
 
-        printItems($groceries);
+        printItems($shopping_list);
 
-        $_SESSION['groceries'] = $groceries;
+        $_SESSION['shopping_list'] = $shopping_list;
         session_write_close();
     ?>
 </body>

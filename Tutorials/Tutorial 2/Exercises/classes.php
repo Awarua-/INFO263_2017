@@ -10,7 +10,7 @@
     <title>Classes Form</title>
 </head>
 <body>
-    <h1>Groceries</h1>
+    <h1>Items</h1>
     <p>
         Submit items to be added to the shopping list
     </p>
@@ -38,15 +38,15 @@
 	<h2>Shopping List</h2>
     <?php
 
-		if (isset($_SESSION['groceries']))
+		if (isset($_SESSION['shopping_list']))
 		{
-			$groceries = $_SESSION['groceries'];
+			$shopping_list = $_SESSION['shopping_list'];
 		}
 		else
 		{
             $milk = new Item("milk", 2.00, 1);
             $bread = new Item("bread", 2.50, 2);
-			$groceries = array($milk->get_name() => $milk,
+			$shopping_list = array($milk->get_name() => $milk,
                                 $bread->get_name() => $bread);
 		}
 
@@ -62,12 +62,12 @@
         if(isset($_POST['remove']))
         {
         	$itemsToRemove = extractItems($_POST['remove']);
-  			$groceries = removeAll($itemsToRemove, $groceries);
+  			$shopping_list = removeAll($itemsToRemove, $shopping_list);
         }
 
         if(isset($_POST['clear']))
         {
-            $groceries = array();
+            $shopping_list = array();
         }
 
         function removeAll($items, $array)
@@ -97,7 +97,7 @@
         {
         	echo "<pre>"; //Leave for display method to print properly
 
-            // Fix me
+            // Fix me, a foreach loop might be more useful
 			for($i = 0; $i < count($array); $i++)
         	{
         		//echo $array[$i] . "</br>";
@@ -106,9 +106,9 @@
         	echo "</pre>"; //Leave for display method to print properly
         }
 
-        printItems($groceries);
+        printItems($shopping_list);
 
-        $_SESSION['groceries'] = $groceries;
+        $_SESSION['shopping_list'] = $shopping_list;
         session_write_close();
     ?>
 </body>

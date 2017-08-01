@@ -27,4 +27,10 @@ class Item
         return $this->name;
     }
 }
+
+if (!debug_backtrace()) {
+    // do useful stuff
+    $item = new Item("milk", 2.50, 2);
+    echo $item->display();
+}
  ?>
