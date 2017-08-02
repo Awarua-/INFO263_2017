@@ -21,32 +21,35 @@
         <input type='submit' value='Add' />
     </form>
 
-    <!-- Add Remove form.-->
+    <!-- Add Remove form here.-->
 
 	<h2>Shopping List</h2>
     <?php
 
+        // If the PHP session has a shopping_list section,
+        // copy its contents into the shopping_list PHP variable.
 		if (isset($_SESSION['shopping_list']))
 		{
 			$shopping_list = $_SESSION['shopping_list'];
 		}
+		// Otherwise initialise the shopping_list PHP variable with these items.
 		else
 		{
 			$shopping_list = array("milk", "bread", "oranges");
 		}
 
+		// If the page is requested in response to the POST request,
+        // extract the values associated with the add field,
+        // and insert them at the end of the shopping_list.
         if(isset($_POST['add']))
         {
         	$shopping_list[] = $_POST['add'];
         }
 
-
         function printItems($array)
         {
-        	// print the items of the array using a for loop
+        	// Print the items of the array using a for loop.
         	// BEGIN STUDENT SECTION
-
-
 
         	// END STUDENT SECTION
         }

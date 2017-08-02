@@ -21,7 +21,9 @@
             Name:
             <input type='text' name='name' size='10'/>
         </label>
-			<!-- add price and quantity form parameters. -->
+
+			<!-- Add price and quantity form parameters. -->
+
         <input type='submit' value='Add' />
     </form>
     <br>
@@ -33,7 +35,7 @@
     	<input type="submit" value="Remove" />
     </form>
 
-<!--    Add a clear all form-->
+    <!--    Add a clear all form here. -->
 
 	<h2>Shopping List</h2>
     <?php
@@ -47,7 +49,8 @@
             $milk = new Item("milk", 2.00, 1);
             $bread = new Item("bread", 2.50, 2);
 			$shopping_list = array($milk->get_name() => $milk,
-                                $bread->get_name() => $bread);
+                                $bread->get_name() => $bread,
+                                $oranges->get_name() => $oranges);
 		}
 
         if(isset($_POST['add']))
@@ -55,7 +58,7 @@
         	$newItem = createItem($_POST);
             if (!is_null($newItem))
             {
-        	       // add new item to associative array.
+                // Add new item to associative array.
             }
         }
 
@@ -72,7 +75,7 @@
 
         function removeAll($items, $array)
         {
-        	// remove items from array.
+        	// Remove items from array.
         	return $array;
         }
 
@@ -89,21 +92,21 @@
         function createItem($item)
         {
         	return new Item($item['name'], $item['price'], $item['quantity']);
-			//Extend later
+			// Extend later by putting in a check for an empty string for a name.
+            // Make the function return NULL in this case.
         }
-
 
         function printItems($array)
         {
-        	echo "<pre>"; //Leave for display method to print properly
+        	echo "<pre>"; // Leave for display method to print properly.
 
-            // Fix me, a foreach loop might be more useful
+            // Fix me, a foreach loop might be more useful.
 			for($i = 0; $i < count($array); $i++)
         	{
-        		//echo $array[$i] . "</br>";
+        		// echo $array[$i] . "</br>";
         	}
 
-        	echo "</pre>"; //Leave for display method to print properly
+        	echo "</pre>"; // Leave for display method to print properly.
         }
 
         printItems($shopping_list);

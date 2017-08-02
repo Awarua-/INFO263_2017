@@ -1,13 +1,11 @@
 <?php
 class Item
 {
-    // Add missing fields.
-
+    // Add missing properties.
 
     public function __construct($name, $price, $quantity)
     {
-        // Complete the constructor
-        return; // remove
+        // Complete the constructor.
     }
 
     public function display()
@@ -28,7 +26,7 @@ class Item
 }
 
 if (!debug_backtrace()) {
-    // do useful stuff
+    // Debugging output.
     $item = new Item("milk", 2.50, 2);
     echo $item->display();
 }

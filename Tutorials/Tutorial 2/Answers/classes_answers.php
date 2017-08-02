@@ -132,7 +132,6 @@
             return NULL;
         }
 
-
         function printItems($array)
         {
             // print the items of the array using a for loop

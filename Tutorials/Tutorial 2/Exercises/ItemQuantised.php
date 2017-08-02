@@ -12,8 +12,7 @@ class ItemQuantised extends Item
 
     public function __construct($name, $price, $quantity, $units)
     {
-        // Complete the constructor
-        return; //remove
+        // Complete the constructor.
     }
 
     public function display()
@@ -23,7 +22,7 @@ class ItemQuantised extends Item
 }
 
 if (!debug_backtrace()) {
-    // do useful stuff
+    // Debug output.
     $item = new ItemQuantised("oranges", 4.30, 2.2, ItemQuantised::KILOGRAM);
     echo $item->display();
 }

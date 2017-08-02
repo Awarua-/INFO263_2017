@@ -32,21 +32,30 @@
 	<h2>Shopping List</h2>
     <?php
 
+        // If the PHP session has a shopping_list section,
+        // copy its contents into the shopping_list PHP variable.
 		if (isset($_SESSION['shopping_list']))
 		{
 			$shopping_list = $_SESSION['shopping_list'];
 		}
+        // Otherwise initialise the shopping_list PHP variable with these items.
 		else
 		{
 			$shopping_list = array("milk", "bread", "oranges");
 		}
 
+        // If the page is requested in response to the POST request,
+        // extract the values associated with the add field,
+        // and insert them at the end of the shopping_list.
         if(isset($_POST['add']))
         {
         	$newItems = extractItems($_POST['add']);
         	$shopping_list = array_merge($newItems, $shopping_list);
         }
 
+        // If the page is requested in response to the POST request,
+        // extract the values associated with the remove field,
+        // and remove them from the shopping_list.
         if(isset($_POST['remove']))
         {
         	$itemsToRemove = extractItems($_POST['remove']);
@@ -112,7 +121,6 @@
         	return NULL;
         	// END STUDENT SECTION
         }
-
 
         printItems($shopping_list);
 
