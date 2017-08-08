@@ -1,0 +1,101 @@
+customer_id,customer_name,customer_address,customer_city,customer_state,customer_postal_code
+1,"Myra Parker","666-7336 Dictum Rd.",Wilmington,Delaware,39349
+2,"Sheila Munoz","8343 Sed, Avenue",Springdale,Arkansas,71576
+3,"Noel Wise","Ap #759-5839 Eu Av.",Richmond,Virginia,31290
+4,"Desiree Joseph","158-6122 Sed Street",Fayetteville,Arkansas,71010
+5,"Kane Best","P.O. Box 880, 1306 Est St.","Salt Lake City",Utah,36752
+6,"Cathleen Ashley","725-8538 Faucibus Avenue",Tacoma,Washington,53993
+7,"Chaney Slater","P.O. Box 623, 3568 Et, Rd.","Cedar Rapids",Iowa,65480
+8,"Lysandra Flynn","9125 Sit Av.",Miami,Florida,15824
+9,"Kaitlin Green","935-8140 Mauris Rd.",Laramie,Wyoming,62886
+10,"Bertha Moss","725-3034 Sagittis Street","Fort Collins",Colorado,77572
+11,"Xantha Villarreal","665-4044 Molestie. St.","Sterling Heights",Michigan,78540
+12,"Tamara Weiss","P.O. Box 515, 6679 Lectus. St.",Philadelphia,Pennsylvania,89537
+13,"Fletcher Buck","P.O. Box 378, 3334 Blandit Ave",Annapolis,Maryland,50012
+14,"Kiara Holder","Ap #241-7931 Curabitur Av.","Green Bay",Wisconsin,87703
+15,"Kyra Lane","137-2342 Hendrerit Rd.",Wilmington,Delaware,15956
+16,"Idona Cannon","287-5688 Diam. Av.",Duluth,Minnesota,48135
+17,"Wallace Cotton","Ap #445-2733 Mauris Av.",Provo,Utah,48895
+18,"Hamilton Kane","169-632 Luctus. Ave",Wilmington,Delaware,76951
+19,"Xanthus Leon","296 Ultricies Rd.",Eugene,Oregon,77211
+20,"Plato Wilson","700-7422 Morbi Av.",Rockford,Illinois,35494
+21,"Sylvester Kent","P.O. Box 465, 6666 Lobortis St.",Montpelier,Vermont,30325
+22,"Lucas Burt","Ap #179-853 Ipsum. Ave","Cedar Rapids",Iowa,67813
+23,"Ramona Hart","P.O. Box 135, 4538 Egestas Road",Topeka,Kansas,80009
+24,"Harper Burton","6351 Nec Ave","Pike Creek",Delaware,11798
+25,"Gareth Case","Ap #547-816 Elit Street","Baton Rouge",Louisiana,83349
+26,"Duncan Glover","892-8565 Erat. Street","Little Rock",Arkansas,72198
+27,"Athena Quinn","Ap #380-6946 In Rd.",Provo,Utah,58767
+28,"Ignatius Hoffman","P.O. Box 485, 8392 Gravida St.",Jackson,Mississippi,33017
+29,"Judah Stanton","P.O. Box 256, 5147 Pretium Rd.",Joliet,Illinois,87080
+30,"Shaeleigh Vazquez","Ap #772-1739 Praesent St.",Augusta,Georgia,34982
+31,"Cole Brady","P.O. Box 315, 1006 Commodo Street",Fairbanks,Alaska,99755
+32,"Ursa Wiley","Ap #265-3411 Lobortis Avenue",Milwaukee,Wisconsin,75300
+33,"Xantha Booker","421-6064 Justo Rd.",Boise,Idaho,20203
+34,"Cally Henderson","8227 Rhoncus. Rd.",Juneau,Alaska,99678
+35,"Forrest Nunez","P.O. Box 258, 588 Tortor. Road",Springfield,Illinois,27496
+36,"Emma Ware","7843 Dui. St.",Honolulu,Hawaii,25554
+37,"Cody Wyatt","Ap #260-4578 Turpis Street",Racine,Wisconsin,78490
+38,"Adele Mccall","320-4278 Laoreet, Rd.",Nashville,Tennessee,82600
+39,"Patricia Mooney","2543 Nunc Road",Montpelier,Vermont,12538
+40,"Murphy Perkins","5064 Suspendisse Road",Fresno,California,92408
+41,"Joy Fleming","Ap #369-4004 Eros Rd.",Kaneohe,Hawaii,68637
+42,"Jonah Jensen","310-6175 Vulputate Av.",Waterbury,Connecticut,99869
+43,"Germaine Myers","Ap #308-7558 Neque Street",Cambridge,Massachusetts,58519
+44,"Mikayla Hamilton","2416 Sed, Street",Glendale,Arizona,86245
+45,"Illana Petty","P.O. Box 880, 2928 Quis, Av.",Waterbury,Connecticut,51519
+46,"Faith Fields","5844 Amet Rd.",Birmingham,Alabama,35702
+47,"Yoshi Dudley","Ap #806-2718 Dignissim Rd.",Memphis,Tennessee,74982
+48,"Kadeem Nixon","592-4223 Odio Road",Gaithersburg,Maryland,76922
+49,"McKenzie Sweeney","290-7145 Dui. Av.",Independence,Missouri,21810
+50,"Britanney Huffman","231-560 Mi Rd.",Lincoln,Nebraska,92675
+51,"Sade Roman","6687 Sem, St.","Virginia Beach",Virginia,50038
+52,"Emma Reeves","213-1682 At, Ave",Stamford,Connecticut,79508
+53,"Buckminster Rich","701-787 Nibh. Av.",Richmond,Virginia,65536
+54,"Hermione Clements","Ap #254-1996 Ridiculus Road",Nashville,Tennessee,46784
+55,"Ebony Dunn","850 Malesuada Rd.",Boise,Idaho,22799
+56,"Sebastian Gonzales","2311 Varius St.",Bellevue,Nebraska,88021
+57,"Carissa Callahan","3165 Egestas. St.",Racine,Wisconsin,35447
+58,"Quyn Henson","815-4758 Eu Rd.",Lowell,Massachusetts,47919
+59,"Pearl Valentine","P.O. Box 865, 3894 Aliquam St.",Denver,Colorado,99545
+60,"Nigel Perez","7739 Eget, Rd.",Chattanooga,Tennessee,54777
+61,"Vivien Gill","Ap #847-9936 Phasellus Rd.",Anchorage,Alaska,99505
+62,"Clarke Russell","P.O. Box 635, 7638 Sed Rd.",Chicago,Illinois,63724
+63,"Fulton Nieves","Ap #401-3669 Ut Ave",Sandy,Utah,61892
+64,"Ava Forbes","Ap #866-6146 Primis St.",Rochester,Minnesota,70287
+65,"Hollee Pierce","1847 Feugiat Avenue","Kansas City",Missouri,25340
+66,"Hedley Tran","Ap #447-3301 Donec St.",Gillette,Wyoming,49675
+67,"Stella Sexton","433-5846 Phasellus Rd.",Colchester,Vermont,42755
+68,"David Gallagher","531-4352 Vestibulum. Av.",Duluth,Minnesota,63219
+69,"Leandra Sherman","9487 Ut Rd.",Rockville,Maryland,65347
+70,"Lunea Vance","356 Cursus St.",Burlington,Vermont,56614
+71,"Remedios Ortiz","530-2250 Lobortis, Road",Rutland,Vermont,99486
+72,"Graham Hernandez","Ap #204-6169 Tincidunt St.",Vancouver,Washington,20183
+73,"Kiara Arnold","Ap #629-3317 Vulputate Avenue",Augusta,Maine,32342
+74,"Whitney Davis","P.O. Box 978, 9262 Augue Rd.","Broken Arrow",Oklahoma,49481
+75,"Medge Sanford","992-9467 Nisi St.",Honolulu,Hawaii,79028
+76,"Tucker Webster","Ap #783-4751 Condimentum St.",Dallas,Texas,37923
+77,"Dalton Hull","916-5123 Auctor Street",Harrisburg,Pennsylvania,67736
+78,"Wyatt Fox","Ap #749-305 Sed, Rd.",Mobile,Alabama,35279
+79,"Knox Thompson","P.O. Box 781, 1336 Adipiscing Ave",Sacramento,California,94653
+80,"Harrison Dennis","4096 Mauris Road","Idaho Falls",Idaho,43020
+81,"Carter Alford","Ap #599-9896 Vitae, Av.",Tulsa,Oklahoma,18799
+82,"Carissa Randall","7275 Vulputate Avenue",Gulfport,Mississippi,39659
+83,"Dean Weber","966-8614 Pede. Rd.",Naperville,Illinois,42080
+84,"Yardley Harper","P.O. Box 998, 7053 Donec St.",Anchorage,Alaska,99911
+85,"Ciara Campbell","Ap #664-9863 Nisi St.","Salt Lake City",Utah,12811
+86,"Camilla Pate","703-8242 Magnis Rd.",Richmond,Virginia,18787
+87,"Sean Yates","P.O. Box 186, 2889 Pellentesque. Road",Bellevue,Nebraska,61073
+88,"Garth Jarvis","386-4968 Tristique Av.",Chicago,Illinois,40998
+89,"Duncan Trevino","5391 Odio Rd.",Henderson,Nevada,70003
+90,"Tarik Bass","Ap #580-4456 Ante, Ave",Biloxi,Mississippi,37630
+91,"Hanna Andrews","P.O. Box 652, 8176 Ultrices Avenue",Boise,Idaho,26114
+92,"Mara Cunningham","Ap #581-8604 Eget Ave",Miami,Florida,29412
+93,"John Higgins","Ap #259-9879 Dolor. Ave",Milwaukee,Wisconsin,61315
+94,"Joseph Wright","333-7622 Et, Rd.","Grand Island",Nebraska,43792
+95,"Cyrus Collier","P.O. Box 752, 5740 Nisi. Rd.","Green Bay",Wisconsin,59201
+96,"Evan Franks","P.O. Box 498, 7339 Pede Av.",Tallahassee,Florida,29687
+97,"Maite Rodriquez","Ap #693-9514 Velit Rd.",Kapolei,Hawaii,89293
+98,"Boris Mayo","P.O. Box 592, 496 Elit Avenue","Fort Wayne",Indiana,80329
+99,"Veda Austin","Ap #391-5824 Massa. Street",Chandler,Arizona,86592
+100,"Rose Sears","8936 Eu, Street",Juneau,Alaska,99562
