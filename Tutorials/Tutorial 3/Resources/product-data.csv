@@ -1,11 +1,11 @@
-product_id,product_description,product_finish,product_standard_price
-1,"End Table",Walnut,94.82
-2,"Coffee Table","Natural Ash",71.50
-3,"Entertainment Center","Natural Ash",92.48
-4,"Computer Desk",Walnut,21.21
-5,"Writers Desk","Natural Ash",91.60
-6,"8-Drawer Desk",Walnut,30.71
-7,"Dining Table","Natural Ash",32.24
-8,"Computer Desk",Cherry,87.53
-9,"Coffee Table",Cherry,46.28
-10,"Writers Desk","Natural Ash",44.79
+product_id,product_description,product_finish,product_standard_price,product_line_id
+1,"End Table",Walnut,94.82,1
+2,"Coffee Table","Natural Ash",71.50,2
+3,"Entertainment Center","Natural Ash",92.48,3
+4,"Computer Desk",Walnut,21.21,4
+5,"Writers Desk","Natural Ash",91.60,5
+6,"8-Drawer Desk",Walnut,30.71,6
+7,"Dining Table","Natural Ash",32.24,7
+8,"Computer Desk",Cherry,87.53,8
+9,"Coffee Table",Cherry,46.28,9
+10,"Writers Desk","Natural Ash",44.79,10
