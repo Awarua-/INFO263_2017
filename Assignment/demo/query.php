@@ -1,17 +1,49 @@
 <?php //query.php
-include 'include/common.php';
-include 'include/config.php';
+require_once 'include/common.php';
+require_once 'include/config.php';
+
+$conn = new mysqli($hostname, $username, $password, $database);
+if ($conn->connect_error)
+{
+    fatalError($conn->connect_error);
+    return;
+}
 
 if (isset($_POST['query']))
 {
-    $query = SanitizeString($_POST['query']);
-    if ($query == "ships")
+    $table = sanitizeString($_POST['query']);
+    switch($table)
     {
-        echo $shipsJson;
+        case "stops":
+            $table = "stops";
+            break;
+        case "routes":
+            $table = "routes";
+            break;
+        case "vehicles":
+            $table = "vehicles";
+            break;
+        default:
+            $table = NULL;
     }
-    elseif ($query == "ports")
+    if (!is_null($table))
     {
-        echo $portsJson;
+        $query = "SELECT distinct route_short_name, route_long_name FROM {$table};";
+        $result = $conn->query($query);
+        if (!$result)
+        {
+            echo $conn->error;
+        }
+        else {
+            $results = array();
+            while ($row = $result->fetch_array(MYSQLI_ASSOC))
+            {
+                $results[] = $row;
+            }
+
+            echo json_encode($results);
+        }
     }
+
 }
 ?>
