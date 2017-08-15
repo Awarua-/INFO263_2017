@@ -9,8 +9,9 @@ require_once 'include/header.php';
         <input type="Submit" value="Submit"/>
     </form>
 </div>
-<div id="routes">
-
+<div class="d-flex flex-wrap">
+    <label for="routes" class="select">Select Route</label>
+    <select name="routes" id="routes"></select>
 </div>
 <script async defer
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD1dh0Oru6bbn2-m9jyurjupgt6AgJWbyc&callback=initMap">
@@ -36,6 +37,14 @@ require_once 'include/header.php';
             dataType:  "json"
         };
         $('#vehicle_lookup').ajaxForm(options);
+        $("#routes").selectmenu(
+            {
+                change: "handleTarget"
+            }
+        );
+        // $("#routes").on("selectmenuchange", function (e, ui) {
+        //     console.log("yay");
+        // });
     });
     function addParams(arr, $form, options) {
         arr.push({name: "type", value:"realtime", type:"text"});
@@ -56,10 +65,19 @@ require_once 'include/header.php';
         }
     }
 
+    function routeHandler(target, ui) {
+        console.log(target);
+        // $(".route_item#"+ target.id).css("selected", true);
+    }
+
     var params = { query: "routes" };
     $.post("query.php", params, function(data) {
-        console.log(data);
-        $("#routes").html(data);
+        data = JSON.parse(data);
+        for (var item of data) {
+            $("#routes").append(new Option(item.route_short_name, item.route_short_name));
+            // content += "<option class=\"route_item\" value=\"" + item.route_short_name + "\">" + item.route_short_name + "</option>";
+        }
+
     });
 
 </script>

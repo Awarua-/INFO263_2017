@@ -28,7 +28,7 @@ if (isset($_POST['query']))
     }
     if (!is_null($table))
     {
-        $query = "SELECT distinct route_short_name, route_long_name FROM {$table};";
+        $query = "SELECT distinct route_short_name FROM {$table} ORDER BY route_short_name;";
         $result = $conn->query($query);
         if (!$result)
         {
