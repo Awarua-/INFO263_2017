@@ -22,7 +22,9 @@ if ($conn->connect_error)
  */
 function getAllItems($conn)
 {
-
+	$items = array();
+	
+	return $items;
 }
 
 /**
