@@ -9,10 +9,11 @@ require_once 'include/header.php';
         <input type="Submit" value="Submit"/>
     </form>
 </div>
-<div class="d-flex flex-wrap">
+<div id="route_selection">
     <label for="routes" class="select">Select Route</label>
     <select name="routes" id="routes"></select>
 </div>
+<div id="debug"></div>
 <script async defer
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD1dh0Oru6bbn2-m9jyurjupgt6AgJWbyc&callback=initMap">
 </script>
@@ -30,6 +31,11 @@ require_once 'include/header.php';
       });
     }
 
+    function routeHandler(target, ui) {
+        console.log(target);
+        // $(".route_item#"+ target.id).css("selected", true);
+    }
+
     $(document).ready(function() {
         var options = {
             beforeSubmit:  addParams,  // pre-submit callback
@@ -37,15 +43,38 @@ require_once 'include/header.php';
             dataType:  "json"
         };
         $('#vehicle_lookup').ajaxForm(options);
-        $("#routes").selectmenu(
-            {
-                change: "handleTarget"
+
+        var params = { query: "routes" };
+        $.post("query.php", params, function(data) {
+            try {
+                data = JSON.parse(data);
             }
-        );
-        // $("#routes").on("selectmenuchange", function (e, ui) {
-        //     console.log("yay");
-        // });
+            catch (e) {
+                $("#debug").html(data);
+            }
+            for (var item of data) {
+                $("#routes").append(new Option(item.route_short_name, item.route_short_name));
+            }
+            $("#routes").on("change", function (e) {
+                var optionSelected = $("option:selected", this);
+                updateRoute(optionSelected[0].value);
+            });
+
+        });
     });
+
+    function updateRoute(value) {
+        $.post("query.php", { query: "route_lookup", data: value}, function(data) {
+            try {
+                data = JSON.parse(data);
+            }
+            catch (e) {
+                $("#debug").html(data);
+            }
+            console.log(data);
+        });
+    }
+
     function addParams(arr, $form, options) {
         arr.push({name: "type", value:"realtime", type:"text"});
         return true;
@@ -64,21 +93,6 @@ require_once 'include/header.php';
             marker.setMap(map);
         }
     }
-
-    function routeHandler(target, ui) {
-        console.log(target);
-        // $(".route_item#"+ target.id).css("selected", true);
-    }
-
-    var params = { query: "routes" };
-    $.post("query.php", params, function(data) {
-        data = JSON.parse(data);
-        for (var item of data) {
-            $("#routes").append(new Option(item.route_short_name, item.route_short_name));
-            // content += "<option class=\"route_item\" value=\"" + item.route_short_name + "\">" + item.route_short_name + "</option>";
-        }
-
-    });
 
 </script>
 <?php
