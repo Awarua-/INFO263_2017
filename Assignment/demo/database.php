@@ -15,8 +15,7 @@ function prepraredQuery($conn, $query, $format, $values)
         {
             $bind_arguments[] = & $recordvalues[$recordkey];    # bind to array ref, not to the temporary $recordvalue
         }
-        // array_unshift($values, $format);
-        // call_user_func_array(array($stmt, 'bind_param'), $bind_arguments);
+
         $stmt->bind_param($format, ...$values);
         $stmt->execute();
         if ($stmt->errno)

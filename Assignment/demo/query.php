@@ -4,8 +4,6 @@ require_once 'include/config.php';
 require_once 'database.php';
 require_once 'requests.php';
 
-set_time_limit(500);
-
 $conn = new mysqli($hostname, $username, $password, $database);
 if ($conn->connect_error)
 {
@@ -37,26 +35,39 @@ function route_lookup($conn, $data, $APIKey)
     $fmt = "s";
     $values = array(mysqlSanitise($conn, $data));
 
-    $trip_ids = prepraredQuery($conn, $query, $fmt, $values);
-
-    $results = array();
-    $start_query = "https://api.at.govt.nz/v2/public/realtime/vehiclelocations?tripid=";
-    $query = $start_query;
-    foreach($trip_ids as $key => $value)
+    $result = prepraredQuery($conn, $query, $fmt, $values);
+    $trip_ids = array();
+    foreach ($result as $index => $value)
     {
-        if ($len = strlen($query) > 1800)
-        {
-            $results[] = rtrim($query, ',');
-            $query = $start_query;
-        }
-        $query .= $value['trip_id'] . ",";
+        $trip_ids[] = $value['trip_id'];
     }
-    $query = rtrim($query, ',');
-    $results[] = $query;
-    $getter = new ParallelGet($results, $APIKey);
-    $getter->execute();
+    $url = "https://api.at.govt.nz/v2/public/realtime/vehiclelocations";
+    $params = array("tripid" => $trip_ids);
+    $results = apiCall($APIKey, $url, $params);
+    $data = json_decode($results, true);
+
+    $out = array();
+    foreach ($data as $value)
+    {
+        $value = json_decode($value, true);
+        if (!empty($value['response']))
+        {
+            $entities = $value['response']['entity'];
+            foreach ($entities as $entity)
+            {
+                $vehicle = $entity['vehicle'];
+                $vehicle_data = array('id' => $vehicle['vehicle']['id'], 'lat' => $vehicle['position']['latitude'], 'lng' => $vehicle['position']['longitude']);
+                $trip = $vehicle['trip'];
+                $timestamp = $vehicle['timestamp'];
+
+                $result = array('vehicle' => $vehicle_data, 'trip' => $trip, 'timestamp' => $timestamp);
+                $out[] = $result;
+            }
+        }
+    }
+
     header('Content-Type: application/json');
-    echo json_encode($getter->getResults());
+    echo json_encode($out);
 }
 
 $conn->close();

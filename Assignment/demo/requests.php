@@ -1,26 +1,53 @@
 <?php
 /**
- * [apiCall description]
- * @param  [type] $APIKey      [description]
- * @param  [type] $url         [description]
- * @param  [type] $queryParams [description]
- * @return [type]              [description]
+ * Max length for a uri, lengths over 2000 are rejected by the sever.
+ * @var integer
+ */
+const URIMAXLENGTH = 1900;
+
+/**
+ * Calls the given url with the query params and API in the header, responds with ann array of results.
+ *
+ * @param  string $APIKey      API key for using, Auckland Transport API
+ * @param  string $url         Url, API end point.
+ * @param  array $queryParams  Associative array of query strings, with field value pairs.
+ * @return json                json encoded array of results
  */
 function apiCall($APIKey, $url, $queryParams)
 {
-    $opts = array(
-        'http' => array(
-          'header'=>"Ocp-Apim-Subscription-Key: ${APIKey}"
-        )
-    );
+    $queries = array();
+    $start_query = $url;
+    foreach ($queryParams as $query => $params)
+    {
+        $queryParamString = "$query=";
+        foreach ($params as $index => $value)
+        {
+            $len = strlen($start_query) + strlen($queryParamString);
+            // We have reached the max length of a URI, that will be accepted by the server
+            // So we need to batch the call.
+            if ($len > URIMAXLENGTH)
+            {
+                // Get rid of the last comma
+                $queryParamString = rtrim($queryParamString, ",");
+                $queries[] = $start_query . "?" . $queryParamString;
+                $queryParamString = "$query=$value,";
+            }
+            $queryParamString .= $value . ",";
+        }
 
-    $context = stream_context_create($opts);
+        // Add the last uri to batch
+        $queryParamString = rtrim($queryParamString, ",");
+        $queries[] = $start_query . "?" . $queryParamString;
+    }
 
-    return file_get_contents($query, false, $context);
+    $getter = new ParallelGet($queries, $APIKey);
+    $getter->execute();
+    return json_encode($getter->getResults());
 }
 
+
 /**
- * [ParallelGet description]
+ * Performs parallel get requests using CURL
  */
 class ParallelGet
 {
@@ -29,9 +56,9 @@ class ParallelGet
     private $ch;
 
     /**
-     * [__construct description]
-     * @param [type] $urls   [description]
-     * @param [type] $APIKey [description]
+     * Creates an instance of ParallelGet.
+     * @param array $urls   Array of URLs to execute.
+     * @param string $APIKey API Key for Auckland Transport API.
      */
     function __construct($urls, $APIKey)
     {
@@ -57,8 +84,7 @@ class ParallelGet
         }
     }
     /**
-     * [execute description]
-     * @return [type] [description]
+     * Excutes URLs.
      */
     function execute()
     {
@@ -88,8 +114,8 @@ class ParallelGet
     }
 
     /**
-     * [getResults description]
-     * @return [type] [description]
+     * Gets results from executed URLs.
+     * @return array Array of results from URLs.
      */
     function getResults()
     {
