@@ -3,5 +3,5 @@ $hostname = "";
 $database = "";
 $username = "";
 $password = "";
-$APIKey = "";
+$APIKey = ""; # Your API Key here.
 ?>
