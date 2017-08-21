@@ -17,27 +17,34 @@ function apiCall($APIKey, $url, $queryParams)
 {
     $queries = array();
     $start_query = $url;
-    foreach ($queryParams as $query => $params)
+    if (count($queryParams) === 0)
     {
-        $queryParamString = "$query=";
-        foreach ($params as $index => $value)
+        $queries[] = $url;
+    }
+    else
+    {
+        foreach ($queryParams as $query => $params)
         {
-            $len = strlen($start_query) + strlen($queryParamString);
-            // We have reached the max length of a URI, that will be accepted by the server
-            // So we need to batch the call.
-            if ($len > URIMAXLENGTH)
+            $queryParamString = "$query=";
+            foreach ($params as $index => $value)
             {
-                // Get rid of the last comma
-                $queryParamString = rtrim($queryParamString, ",");
-                $queries[] = $start_query . "?" . $queryParamString;
-                $queryParamString = "$query=$value,";
+                $len = strlen($start_query) + strlen($queryParamString);
+                // We have reached the max length of a URI, that will be accepted by the server
+                // So we need to batch the call.
+                if ($len > URIMAXLENGTH)
+                {
+                    // Get rid of the last comma
+                    $queryParamString = rtrim($queryParamString, ",");
+                    $queries[] = $start_query . "?" . $queryParamString;
+                    $queryParamString = "$query=$value,";
+                }
+                $queryParamString .= $value . ",";
             }
-            $queryParamString .= $value . ",";
-        }
 
-        // Add the last uri to batch
-        $queryParamString = rtrim($queryParamString, ",");
-        $queries[] = $start_query . "?" . $queryParamString;
+            // Add the last uri to batch
+            $queryParamString = rtrim($queryParamString, ",");
+            $queries[] = $start_query . "?" . $queryParamString;
+        }
     }
 
     $getter = new ParallelGet($queries, $APIKey);
@@ -141,7 +148,6 @@ class ParallelGet
 
         // Clean up the curl_multi handle
         curl_multi_close($this->mh);
-
         // return the response data
         return $res;
     }

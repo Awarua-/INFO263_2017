@@ -1,4 +1,4 @@
-<?php //query.php
+<?php //database.php
 require_once 'include/common.php';
 require_once 'include/config.php';
 require_once 'query.php';
