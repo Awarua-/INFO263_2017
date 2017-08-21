@@ -75,7 +75,6 @@ class ParallelGet
         $this->ch = array();
         $request_headers = array();
         $request_headers[] = "accept: application/json";
-        $request_headers[] = "accept-encoding: gzip, deflate";
         $request_headers[] = "accept-language: en-US,en;q=0.8";
         $request_headers[] = "user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36";
         $request_headers[] = "Ocp-Apim-Subscription-Key: ". $APIKey;
