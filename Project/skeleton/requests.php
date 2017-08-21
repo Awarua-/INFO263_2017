@@ -42,7 +42,7 @@ function apiCall($APIKey, $url, $queryParams)
 
     $getter = new ParallelGet($queries, $APIKey);
     $getter->execute();
-    return json_encode($getter->getResults());
+    return $getter->getResults();
 }
 
 
@@ -142,7 +142,7 @@ class ParallelGet
         // Clean up the curl_multi handle
         curl_multi_close($this->mh);
 
-        // Print the response data
+        // return the response data
         return $res;
     }
 }

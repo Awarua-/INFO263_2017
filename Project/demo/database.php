@@ -44,10 +44,9 @@ function route_lookup($conn, $data, $APIKey)
     $url = "https://api.at.govt.nz/v2/public/realtime/vehiclelocations";
     $params = array("tripid" => $trip_ids);
     $results = apiCall($APIKey, $url, $params);
-    $data = json_decode($results, true);
 
     $out = array();
-    foreach ($data as $value)
+    foreach ($results as $value)
     {
         $value = json_decode($value, true);
         if (!empty($value['response']))
