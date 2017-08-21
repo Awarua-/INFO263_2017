@@ -2,11 +2,12 @@
 $active = "home";
 require_once 'include/header.php';
 ?>
-<div id="map"></div>
 <div id="route_selection">
     <label for="routes" class="select">Select Route</label>
     <select name="routes" id="routes"></select>
 </div>
+<div id="map"></div>
+
 <div id="vehicleNum"></div>
 <div id="debug"></div>
 <script async defer
@@ -16,7 +17,7 @@ require_once 'include/header.php';
 <script>
     $(document).ready(function() {
         var params = { query: "routes" };
-        $.post("query.php", params, function(data) {
+        $.post("database.php", params, function(data) {
             try {
                 data = JSON.parse(data);
             }

@@ -1,60 +1,74 @@
-<?php
-function prepraredQuery($conn, $query, $format, $values)
+<?php //query.php
+require_once 'include/common.php';
+require_once 'include/config.php';
+require_once 'query.php';
+require_once 'requests.php';
+
+$conn = new mysqli($hostname, $username, $password, $database);
+if ($conn->connect_error)
 {
-    if (!is_null($query))
+    fatalError($conn->connect_error);
+    return;
+}
+
+if (isset($_POST['query']))
+{
+    $query_type = mysqlSanitise($conn, $_POST['query']);
+    switch($query_type)
     {
-        $stmt = $conn->prepare($query);
-        if ($stmt->errno)
-        {
-            fatalError($stmt->error);
-            return;
-        }
-        $bind_arguments = [];
-        $bind_arguments[] = $format;
-        foreach ($values as $recordkey => $recordvalue)
-        {
-            $bind_arguments[] = & $recordvalues[$recordkey];    # bind to array ref, not to the temporary $recordvalue
-        }
-
-        $stmt->bind_param($format, ...$values);
-        $stmt->execute();
-        if ($stmt->errno)
-        {
-            fatalError($stmt->error);
-            return;
-        }
-        else {
-            $result = $stmt->get_result();
-            $results = array();
-            while ($row = $result->fetch_array(MYSQLI_ASSOC))
-            {
-                $results[] = $row;
-            }
-            $stmt->close();
-
-            return $results;
-        }
+        case "routes":
+            $query = "SELECT distinct route_short_name FROM routes ORDER BY route_short_name;";
+            echo json_encode(query($conn, $query));
+            break;
+        case "route_lookup":
+            $name = $_POST['data'];
+            route_lookup($conn, $name, $APIKey);
+            break;
+        default:
+            $query = NULL;
     }
 }
 
-function query($conn, $query)
+function route_lookup($conn, $data, $APIKey)
 {
-    if (!is_null($query))
-    {
-        $result = $conn->query($query);
-        if (!$result)
-        {
-            echo $conn->error;
-        }
-        else {
-            $results = array();
-            while ($row = $result->fetch_array(MYSQLI_ASSOC))
-            {
-                $results[] = $row;
-            }
+    $query = "SELECT trip_id FROM routes JOIN trips USING(route_id) WHERE route_short_name = ?;";
+    $fmt = "s";
+    $values = array(mysqlSanitise($conn, $data));
 
-            return $results;
+    $result = prepraredQuery($conn, $query, $fmt, $values);
+    $trip_ids = array();
+    foreach ($result as $index => $value)
+    {
+        $trip_ids[] = $value['trip_id'];
+    }
+    $url = "https://api.at.govt.nz/v2/public/realtime/vehiclelocations";
+    $params = array("tripid" => $trip_ids);
+    $results = apiCall($APIKey, $url, $params);
+    $data = json_decode($results, true);
+
+    $out = array();
+    foreach ($data as $value)
+    {
+        $value = json_decode($value, true);
+        if (!empty($value['response']))
+        {
+            $entities = $value['response']['entity'];
+            foreach ($entities as $entity)
+            {
+                $vehicle = $entity['vehicle'];
+                $vehicle_data = array('id' => $vehicle['vehicle']['id'], 'lat' => $vehicle['position']['latitude'], 'lng' => $vehicle['position']['longitude']);
+                $trip = $vehicle['trip'];
+                $timestamp = $vehicle['timestamp'];
+
+                $result = array('vehicle' => $vehicle_data, 'trip' => $trip, 'timestamp' => $timestamp);
+                $out[] = $result;
+            }
         }
     }
+
+    header('Content-Type: application/json');
+    echo json_encode($out);
 }
- ?>
+
+$conn->close();
+?>

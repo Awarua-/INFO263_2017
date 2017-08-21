@@ -1,7 +1,8 @@
 var map,
     bounds,
     markers = [],
-    interval = null;
+    interval = null,
+    current_route_name;
 
 function initMap() {
   var auckland = {lat: -36.8485, lng: 174.7633};
@@ -14,6 +15,7 @@ function initMap() {
 }
 
 function updateRoute(value) {
+    current_route_name = value;
     if (interval !== null) {
         clearInterval(interval);
     }
@@ -22,7 +24,7 @@ function updateRoute(value) {
 }
 
 function routeCall(value) {
-    $.post("query.php", { query: "route_lookup", data: value}, function(data) {
+    $.post("database.php", { query: "route_lookup", data: value}, function(data) {
         try {
             data = JSON.parse(data);
         }
@@ -65,7 +67,7 @@ function updateRouteMarkers(data) {
         $("#vehicleNum").html(data.length + " vehicles found")
     }
     else {
-        $("#vehicleNum").html("No vehicles on that route :(")
+        $("#vehicleNum").html("No vehicles on " + current_route_name + " route :(")
     }
 }
 
