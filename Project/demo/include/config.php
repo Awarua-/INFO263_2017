@@ -1,7 +1,7 @@
 <?php //config.php
-$hostname = "localhost";
+$hostname = "csse-info263.canterbury.ac.nz";
 $database = "akl_transport";
-$username = "root";
-$password = "";
-$APIKey = "895f9eccacae4be38c9c79b97dfba692";
+$username = "info263";
+$password = "info263";
+$APIKey = "862db80e8ba6459ab8be38d7459404a2";
 ?>
