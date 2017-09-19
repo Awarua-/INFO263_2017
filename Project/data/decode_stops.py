@@ -2,42 +2,72 @@ from load_data import perform_API_call, connection_to_db, close_connection
 
 URL = "https://api.at.govt.nz/v2/gtfs/stops"
 
-data = perform_API_call(URL)
 
-cnx = connection_to_db()
+def run():
+    data = perform_API_call(URL)
 
-cursor = cnx.cursor()
+    cnx = connection_to_db()
 
-# Truncate existing table
-disable_f_key_checks = ("SET FOREIGN_KEY_CHECKS = 0")
-enable_f_key_checks = ("SET FOREIGN_KEY_CHECKS = 1")
+    cursor = cnx.cursor()
 
-truncate = ("TRUNCATE stops")
+    # Truncate existing table
+    disable_f_key_checks = ("SET FOREIGN_KEY_CHECKS = 0")
+    enable_f_key_checks = ("SET FOREIGN_KEY_CHECKS = 1")
 
-cursor.execute(disable_f_key_checks)
-cursor.execute(truncate)
-cursor.execute(enable_f_key_checks)
+    truncate = ("TRUNCATE stops")
 
-cnx.commit()
+    cursor.execute(disable_f_key_checks)
+    cursor.execute(truncate)
+    cursor.execute(enable_f_key_checks)
 
-stmt = "INSERT INTO stops (stop_id, stop_name, stop_desc, stop_lat, stop_lon, zone_id, stop_url, stop_code, stop_street, stop_city, stop_region, stop_postcode, stop_country, location_type, parent_station, stop_timezone, wheelchair_boarding, direction, position, the_geom) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+    cnx.commit()
 
-values = []
+    stmt = "INSERT INTO stops (stop_id, stop_name, stop_desc, stop_lat, \
+    stop_lon, zone_id, stop_url, stop_code, stop_street, stop_city, \
+    stop_region, stop_postcode, stop_country, location_type, parent_station, \
+    stop_timezone, wheelchair_boarding, direction, position, the_geom) \
+    VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,\
+     %s, %s, %s)"
 
-for item in data:
-        try:
-            values = (item["stop_id"], item["stop_name"], item["stop_desc"], item["stop_lat"], item["stop_lon"], item["zone_id"], item["stop_url"], item["stop_code"], item["stop_street"], item["stop_city"], item["stop_region"], item["stop_postcode"], item["stop_country"], item["location_type"], item["parent_station"], item["stop_timezone"], item["wheelchair_boarding"], item["direction"], item["position"], item["the_geom"])
+    values = []
 
-            cursor.execute(stmt, values)
-        except Exception as e:
-            for key, value in item.items():
-                if value is not None and type(value) is str:
-                    item[key] = value.encode("ascii", errors="ignore").decode()
+    for item in data:
+            try:
+                values = (item["stop_id"], item["stop_name"],
+                          item["stop_desc"], item["stop_lat"],
+                          item["stop_lon"], item["zone_id"], item["stop_url"],
+                          item["stop_code"], item["stop_street"],
+                          item["stop_city"], item["stop_region"],
+                          item["stop_postcode"], item["stop_country"],
+                          item["location_type"], item["parent_station"],
+                          item["stop_timezone"], item["wheelchair_boarding"],
+                          item["direction"], item["position"],
+                          item["the_geom"])
 
-            values = (item["stop_id"], item["stop_name"], item["stop_desc"], item["stop_lat"], item["stop_lon"], item["zone_id"], item["stop_url"], item["stop_code"], item["stop_street"], item["stop_city"], item["stop_region"], item["stop_postcode"], item["stop_country"], item["location_type"], item["parent_station"], item["stop_timezone"], item["wheelchair_boarding"], item["direction"], item["position"], item["the_geom"])
+                cursor.execute(stmt, values)
+            except Exception as e:
+                for key, value in item.items():
+                    if value is not None and type(value) is str:
+                        item[key] = value.encode("ascii", errors="ignore")\
+                            .decode()
 
-            cursor.execute(stmt, values)
+                values = (item["stop_id"], item["stop_name"],
+                          item["stop_desc"], item["stop_lat"],
+                          item["stop_lon"], item["zone_id"], item["stop_url"],
+                          item["stop_code"], item["stop_street"],
+                          item["stop_city"], item["stop_region"],
+                          item["stop_postcode"], item["stop_country"],
+                          item["location_type"], item["parent_station"],
+                          item["stop_timezone"], item["wheelchair_boarding"],
+                          item["direction"], item["position"],
+                          item["the_geom"])
 
-cnx.commit()
+                cursor.execute(stmt, values)
 
-close_connection()
+    cnx.commit()
+
+    close_connection()
+
+
+if __name__ == "__main__":
+    run()

@@ -3,35 +3,46 @@ from load_data import perform_API_call, connection_to_db, close_connection
 
 URL = "https://api.at.govt.nz/v2/gtfs/trips"
 
-data = perform_API_call(URL)
 
-cnx = connection_to_db()
+def run():
+    data = perform_API_call(URL)
 
-cursor = cnx.cursor()
+    cnx = connection_to_db()
 
-# Truncate existing table
-disable_f_key_checks = ("SET FOREIGN_KEY_CHECKS = 0")
-enable_f_key_checks = ("SET FOREIGN_KEY_CHECKS = 1")
+    cursor = cnx.cursor()
 
-truncate = ("TRUNCATE routes")
+    # Truncate existing table
+    disable_f_key_checks = ("SET FOREIGN_KEY_CHECKS = 0")
+    enable_f_key_checks = ("SET FOREIGN_KEY_CHECKS = 1")
 
-cursor.execute(disable_f_key_checks)
-cursor.execute(truncate)
-cursor.execute(enable_f_key_checks)
+    truncate = ("TRUNCATE trips")
 
-cnx.commit()
+    cursor.execute(disable_f_key_checks)
+    cursor.execute(truncate)
+    cursor.execute(enable_f_key_checks)
 
-stmt = "INSERT INTO trips (route_id, service_id, trip_id, trip_headsign, direction_id, block_id, shape_id, trip_short_name) VALUES(%s, %s, %s, %s, %s, %s, %s, %s)"
+    cnx.commit()
 
-values = []
+    stmt = "INSERT INTO trips (route_id, service_id, trip_id, trip_headsign, \
+    direction_id, block_id, shape_id, trip_short_name) VALUES(%s, %s, %s, %s, \
+    %s, %s, %s, %s)"
 
-for item in data:
-    values.append((item["route_id"], item["service_id"], item["trip_id"], item["trip_headsign"], item["direction_id"], item["block_id"], item["shape_id"], item["trip_short_name"]))
+    values = []
 
-cursor.execute(disable_f_key_checks)
-cursor.executemany(stmt, values)
-cursor.execute(enable_f_key_checks)
+    for item in data:
+        values.append((item["route_id"], item["service_id"], item["trip_id"],
+                       item["trip_headsign"], item["direction_id"],
+                       item["block_id"], item["shape_id"],
+                       item["trip_short_name"]))
 
-cnx.commit()
+    cursor.execute(disable_f_key_checks)
+    cursor.executemany(stmt, values)
+    cursor.execute(enable_f_key_checks)
 
-close_connection()
+    cnx.commit()
+
+    close_connection()
+
+
+if __name__ == "__main__":
+    run()

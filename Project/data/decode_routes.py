@@ -2,33 +2,45 @@ from load_data import perform_API_call, connection_to_db, close_connection
 
 URL = "https://api.at.govt.nz/v2/gtfs/routes"
 
-data = perform_API_call(URL)
 
-cnx = connection_to_db()
+def run():
+    data = perform_API_call(URL)
 
-cursor = cnx.cursor()
+    cnx = connection_to_db()
 
-# Truncate existing table
-disable_f_key_checks = ("SET FOREIGN_KEY_CHECKS = 0")
-enable_f_key_checks = ("SET FOREIGN_KEY_CHECKS = 1")
+    cursor = cnx.cursor()
 
-truncate = ("TRUNCATE routes")
+    # Truncate existing table
+    disable_f_key_checks = ("SET FOREIGN_KEY_CHECKS = 0")
+    enable_f_key_checks = ("SET FOREIGN_KEY_CHECKS = 1")
 
-cursor.execute(disable_f_key_checks)
-cursor.execute(truncate)
-cursor.execute(enable_f_key_checks)
+    truncate = ("TRUNCATE routes")
 
-cnx.commit()
+    cursor.execute(disable_f_key_checks)
+    cursor.execute(truncate)
+    cursor.execute(enable_f_key_checks)
 
-stmt = "INSERT INTO routes (route_id, route_short_name, route_long_name, route_type, agency_id, route_desc, route_url, route_color, route_text_color) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s)"
+    cnx.commit()
 
-values = []
+    stmt = "INSERT INTO routes (route_id, route_short_name, route_long_name, \
+    route_type, agency_id, route_desc, route_url, route_color, \
+    route_text_color) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s)"
 
-for item in data:
-    values.append((item["route_id"], item["route_short_name"], item["route_long_name"], item["route_type"], item["agency_id"], item["route_desc"], item["route_url"], item["route_color"], item["route_text_color"]))
+    values = []
 
-cursor.executemany(stmt, values)
+    for item in data:
+        values.append((item["route_id"], item["route_short_name"],
+                       item["route_long_name"], item["route_type"],
+                       item["agency_id"], item["route_desc"],
+                       item["route_url"], item["route_color"],
+                       item["route_text_color"]))
 
-cnx.commit()
+    cursor.executemany(stmt, values)
 
-close_connection()
+    cnx.commit()
+
+    close_connection()
+
+
+if __name__ == "__main__":
+    run()
