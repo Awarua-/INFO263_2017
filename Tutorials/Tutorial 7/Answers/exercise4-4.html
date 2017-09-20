@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Events: submit</title>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <form id="form">
+            First name: <input id="fname" type="text" name="fname"><br>
+            Last name: <input id="lname" type="text" name="lname"><br>
+            Age: <input id="age" type="number" name="age" /><br />
+            Address: <input id="address" type="text" name="address" />
+            <input type="submit">
+        </form>
+        <script>
+            $('#form').submit(function() {
+                if ($('#fname').val() == '' || $('#lname').val() == '') {
+                    alert('Please enter both names');
+                    return false;
+                }
+                if ($('#address').val() == '') {
+                    alert('Please enter an address');
+                    return false;
+                }
+
+                var age = $('#age').val();
+
+                if (age == '' || age < 0 || age > 130) {
+                    alert('Please enter an age between 0 and 130');
+                    return false;
+                }
+
+                // else do stuff
+            });
+        </script>
+    </body>
+</html>

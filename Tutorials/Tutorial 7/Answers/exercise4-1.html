@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>jQuery Events</title>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <button id="clickme">Click Me</button>
+        <button id="doubleclick">Double Click</button>
+        <p id="result">I am a paragraph</p>
+        <script>
+            $('#clickme').click(function() {
+                $('#result').html('You clicked the button!');
+            });
+
+            $('#doubleclick').dblclick(function() {
+                $('#result').html('Double clickkkk');
+            });
+        </script>
+    </body>
+</html>
