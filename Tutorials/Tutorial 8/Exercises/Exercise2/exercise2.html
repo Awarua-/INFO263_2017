@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shopping List</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+</head>
+<body>
+    <h1>Items</h1>
+    <p>
+        Submit items to be added to the shopping list
+    </p>
+    <div id="addItem">
+        New item:<br>
+        <label>
+            Name:
+            <input id="itemName" type="text" name="name" size="10"/>
+        </label>
+        <label>
+            Price: $
+            <input id="itemPrice" type="number" name="price" size="5" value="1" step="any"/>
+        </label>
+        <label>
+            Quantity:
+            <input id="itemQuantity" type="number" name="quantity" value="1" size="5" step="any"/>
+        </label>
+
+        <button id="addItemButton">Add</button>
+    </div>
+    <br>
+    <div id="removeItem">
+        <label>
+            Remove items:
+            <input id="removeItemText" type="text" name="remove" size="10"/>
+        </label>
+    	<button id="removeItemButton">Remove</button>
+    </div>
+
+    <br>
+    <div id="clearItems">
+        <button id="clearItemsButton">Clear All</button>
+    </div>
+
+	<h2>Shopping List</h2>
+	<div id="items"></div>
+
+	<script src="exercise2.js"></script>
+</body>
+</html>
