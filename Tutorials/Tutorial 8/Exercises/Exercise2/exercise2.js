@@ -19,12 +19,12 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
 getItems = () => {
     let req = new XMLHttpRequest();
-    req.addEventListener("load", populate_items)
+    req.addEventListener("load", populateItems)
     req.open("GET", "getItems.php");
     req.send();
 }
 
-populate_items = (event) => {
+populateItems = (event) => {
     data = JSON.parse(event.target.response);
     let items = document.getElementById("items");
     let html = ""

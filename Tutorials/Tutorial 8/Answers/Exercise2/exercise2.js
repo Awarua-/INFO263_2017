@@ -29,13 +29,13 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
 getItems = () => {
     let req = new XMLHttpRequest();
-    req.addEventListener("load", populate_items)
+    req.addEventListener("load", populateItems)
     req.open("GET", "getItems.php");
     req.send();
 }
 
-populate_items = (event) => {
-    data = JSON.parse(event.target.response);
+populateItems = (event) => {
+    let data = JSON.parse(event.target.response);
     let items = document.getElementById("items");
     let html = ""
     for (let item of data) {

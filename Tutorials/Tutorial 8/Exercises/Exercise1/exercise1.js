@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", (event) => {
 
     document.getElementById("go").addEventListener("click", (event) => {
-
+        var req = new XMLHttpRequest();
     });
 });
 
-let populate_content = (content) => {
+let populateContent = (content) => {
     document.getElementById("content").innerHTML = content.target.response;
 };

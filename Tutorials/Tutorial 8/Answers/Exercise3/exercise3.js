@@ -25,11 +25,11 @@ $(document).ready(() => {
 
 getItems = () => {
     $.get("getItems.php", (data) => {
-        populate_items(data);
+        populateItems(data);
     });
 }
 
-populate_items = (data) => {
+populateItems = (data) => {
     $("#items").empty();
     for (let item of data) {
         $("#items").append(`<p>Name: ${item.name}, Quantity: ${item.quantity}, Price per item: $${item.price}, Cost: $${(item.quantity * item.price).toFixed(2)}</p>`);
