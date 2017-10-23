@@ -1,0 +1,1 @@
+Use index.php to run the webpage

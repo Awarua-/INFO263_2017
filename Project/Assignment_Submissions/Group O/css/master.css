@@ -1,0 +1,201 @@
+﻿@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+  background-image: url('/../../../../../../media/bg.jpg');
+  background-size: cover;
+}
+
+h1{
+	text-indent: 10px;
+	font-size:82px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  line-height: 60px; /* Vertically center the text there */
+  border-color:rgba(250,250,250,0.2);
+}
+
+#navbar{
+	width:100%;
+	height:50px;
+	background-color:rgba(250,250,250,1);
+	position:relative;
+	top:44px;
+}
+
+#output{
+	width:100%;
+	height:50px;
+	background-color:rgba(250,250,250,1);
+	position:relative;
+	top:-24px;
+}
+
+#routeOutput{
+	padding:12px;
+}
+
+#typebox{
+	position:fixed;
+	top:250px;
+	left: calc(50% - 675px);
+	width:100px;
+	background-color:rgba(250,250,250,0.8);
+}
+
+.mtype{
+	padding:5px;
+	cursor:pointer;
+	width:100%;
+}
+
+.mtype:hover{
+	background-color:#E0E0E0;
+	text-indent:5px;
+}
+#typehead{
+	padding:11px;
+	padding-bottom:0;
+}
+
+#titlebar{
+	width:100%;
+	height:100px;
+	background-color:rgba(250,250,250,0.5);
+}
+
+#ltab{
+	color:#424242;
+	font-family: 'Helvetica Neue', sans-serif; 
+	font-size: 28px; 
+	line-height:50px;
+	text-indent:10px;
+}
+
+option{
+	color:#424242;
+	overflow:hidden;
+	width:350px;
+	font-family: 'Helvetica Neue', sans-serif; 
+	font-size: 24px; 
+	line-height:24px;
+	font-weight: bold; 
+	letter-spacing: -1px; 
+	line-height: 1; 
+	text-align: right;
+}
+
+select{
+	background-color:rgba(250,250,250,0.0);
+	border-color:rgba(250,250,250,0.0);
+	position:relative;	
+	color:#424242;
+	overflow:hidden;
+	width:310px;
+	color:#424242;
+	font-family: 'Helvetica Neue', sans-serif; 
+	font-size: 28px; 
+}
+
+
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+#map {
+    height: 600px;
+    width: 100%;
+}
+/* The switch - the box around the slider */
+
+.switch {
+  position: relative;
+  left:5px;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {display:none;}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 12px;
+  width: 12px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(20px);
+  -ms-transform: translateX(20px);
+  transform: translateX(20spx);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+#checkboxtable {
+	position:relative;
+	top:-41px;
+	left:-20px;
+	float:right;
+}
+
+#micro {
+	position:relative;
+	font-size:14px;
+	top:-8px;
+}
+
+#fixednav {
+	position:relative;
+	background-color:rgba(10,10,10,0.45);
+	height:80px;
+}
