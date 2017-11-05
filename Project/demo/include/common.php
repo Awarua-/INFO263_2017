@@ -1,7 +1,7 @@
 <?php // common.php
 function fatalError($error)
 {
-    $message = mysql_error();
+    $message = mysqli_error();
     echo <<< _END
 Something went wrong :/
 <p>$error: $message</p>

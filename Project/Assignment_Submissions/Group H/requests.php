@@ -4,8 +4,6 @@
  * @var integer
  */
 const URIMAXLENGTH = 1900;
-require_once 'include/config.php';
-
 
 /**
  * Calls the given url with the query params and API in the header, responds with ann array of results.
@@ -86,7 +84,7 @@ class ParallelGet
             $this->ch[$i] = curl_init($url);
             curl_setopt($this->ch[$i], CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($this->ch[$i], CURLOPT_HTTPHEADER, $request_headers);
-            curl_setopt($this->ch[$i], CURLOPT_CAINFO, getcwd() . '\certs\ca-bundle.crt');
+            curl_setopt($this->ch[$i], CURLOPT_CAINFO, getcwd() . '/certs/ca-bundle.crt');
             curl_setopt($this->ch[$i], CURLOPT_ENCODING , "gzip");
             curl_multi_add_handle($this->mh, $this->ch[$i]);
 
@@ -154,44 +152,4 @@ class ParallelGet
         return $res;
     }
 }
-
-
-function getTripInfo($APIKey, $trip_ids) {
-	$url = "https://api.at.govt.nz/v2/public/realtime/vehiclelocations";
-	$ids = array();
-	
-	foreach ($trip_ids as $id){
-		//Add trip ids as individual values to array, so we can use them as params
-		array_push($ids, $id[0]);
-	}
-	$params = array('tripid' => $ids);
-	//Send off request
-	$results = apiCall($APIKey, $url, $params);
-	$finalArray = array();
-	if (array_key_exists('entity', json_decode($results[0], true)["response"]))
-	 {
-		$entity = json_decode($results[0], true)["response"]["entity"];
-		foreach($entity as $value)
-			{
-				//Pull useful information about each bus from the response.
-				$ID =  $value["vehicle"]["vehicle"]["id"];
-				$latitude = $value["vehicle"]["position"]["latitude"];
-				$longitude = $value["vehicle"]["position"]["longitude"];
-				
-				$bearing = "None provided";
-				if (array_key_exists('bearing', $value["vehicle"]["position"])){
-					$bearing = $value["vehicle"]["position"]["bearing"];
-				}
-				$timestamp = "None provided"; 
-				if (array_key_exists('timestamp', $value["vehicle"])){
-					$timestamp = $value["vehicle"]["timestamp"];
-				}
-				//Create a new array for each bus
-				$array = array("ID" => $ID, "latitude" => $latitude, "longitude" => $longitude, "bearing" => $bearing, "lastUpdated" => date("Y-m-d h:i:sa", $timestamp));
-				array_push($finalArray, $array);
-			}
-		}
-	return $finalArray;
-}
-
  ?>
