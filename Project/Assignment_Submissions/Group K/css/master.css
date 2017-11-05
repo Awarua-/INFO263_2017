@@ -1,0 +1,140 @@
+﻿html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  line-height: 60px; /* Vertically center the text there */
+  background-color: #f5f5f5;
+}
+
+
+body > .container {
+  padding: 60px 15px 0;
+}
+
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+#map {
+	height: 400px;
+	width: 100%;
+}
+
+/* styling the information windows titles for each vehicles extra information */
+
+#iw_container h2 {
+   font-family: 'Open Sans Condensed', sans-serif;
+   font-size: 24px;
+   font-weight: 400;
+   padding: 10px;
+   color: #48b5e9;
+   margin: 1px;
+}
+
+#iw_container p {
+	padding: 10px;
+}
+
+
+/* 
+	Centering the dropdown menu and the corresponding text
+	Giving it appropriate spacing from other div's e.g. header and the message div below
+*/
+#select_route {
+	margin-right: auto;
+	margin-left: auto;
+	background-color: white;
+	height: 85px;
+	width: 650px;
+	margin-bottom: 5px;
+	margin-top: 25px;
+	text-align: center;
+
+}
+
+/*
+	Centering the message container and the text inside this div tag.
+	Giving it appropriate spacing from other divs e.g. drop down selection above and the map below
+*/
+#message {
+	background-color: white;
+	margin-left: auto;
+	margin-right: auto;	
+	margin-top: 5px;
+	margin-bottom: 5px;
+	width: 500px;
+	height: 40px;
+	padding: 5px;
+	text-align: center;
+}
+
+---------
+
+/* This is the div container surronding the <select> dropdown
+   This is to give it a few helpful properties to make it look nice and sharp */
+.dropdown {
+	position: relative;
+    display: inline-block;
+    width: 600px;
+}
+
+/* This is for the <select> itself, controlling the width, setting colours for text and background,
+    having no outline and some other properties to control its styling across mulitple browsers */
+.dropdown select {
+	display: inline-block;
+	width: 600px;
+	padding: 10px 15px;
+	cursor: pointer;
+	color: #7b7b7b;
+	border: 0px;
+	border-radius: 0px;
+	outline: 0px;
+	background: #e6e6e6;
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+}
+
+/* This is to stop the default dropdown menu properties */
+.dropdown select::-ms-expand {
+	display: none;
+}
+
+/* this is to make the dropdown go from light grey to dark grey when it is hovered over  */
+.dropdown select:hover, .dropdown select:focus {
+	color: #000;
+	background: #ccc;
+}
+
+/* This is to make the arrow/triangle in the dropdown menu look nicer */
+.arrow {
+	position: absolute;
+	top: 18px;
+	right: 40px;
+	width: 0px;
+	height: 0px;
+	pointer-events: none;
+	border-width: 8px 5px 0px 5px;
+	border-style: solid;
+	border-color: #7b7b7b transparent transparent transparent;
+}
+
+/* This is to change the arrow/triangle's colour as the menu is hovered over */
+.dropdown select:hover ~ .arrow, .dropdown select:focus ~ .arrow {
+	border-top-color: #000;
+}
+
+/* -------------- END OF FILE!   -----------------  */
+
