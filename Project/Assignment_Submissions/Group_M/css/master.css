@@ -1,0 +1,117 @@
+﻿html {
+  position: relative;
+  min-height: 100%;
+  
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 0px;
+  background-color: #add8e6;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 8%;
+  line-height: 60px; /* Vertically center the text there */
+  background-color: #2a2a2a;
+}
+
+
+body > .container {
+  padding: 60px 15px 15px 15px;
+}
+
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.error {
+	display: none;
+	z-index: 1; position: absolute;
+	left: 23%;
+	width: 600px;
+	border: 1px solid; 
+	margin: 10px 0px;
+	padding: 15px 10px 15px 200px;
+	letter-spacing: 1px;
+	background-repeat: no-repeat;
+	background-position: 10px center;
+	color: #D8000C;
+	background-color: #FFBABA;
+}
+
+#map {
+	height: 820px;
+	width: 118%;
+	position: absolute;
+	left: -9%;
+	top: 72%;
+
+}
+
+#routeList {
+	position: fixed;
+	padding: 3px;
+	top: 5.7%;
+	left: 0px;
+	height: 87%;
+	width: 15%;
+	background: #2a2a2a;
+	color: black; 
+	text-align: center;
+	border: black solid 1px;
+	font: white;
+	font-size: 18px;
+	font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+#routeList option {
+	border-bottom: #bdbdbd 1px solid;
+	letter-spacing: 2px;
+	background: #7e7e7e;
+	
+}
+
+#routeList option:hover {
+	background: #2a2a2a;
+	color: white;
+}
+
+#right-border {
+	width: 15%;
+	left: 85%;
+	position: fixed;
+	background: #7e7e7e;
+	padding: 20px;
+	height: 100%;
+	top: 0px;
+	border-left: 11px solid black;
+	
+}
+
+#routeList::-webkit-scrollbar {
+    width: 0.4em;
+}
+  
+#routeList::-webkit-scrollbar-thumb {
+  background-color: white;
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

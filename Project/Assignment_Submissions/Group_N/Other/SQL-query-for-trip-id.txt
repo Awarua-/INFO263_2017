@@ -1,0 +1,7 @@
+select trip_id, route_short_name
+
+from trips
+
+join routes on routes.route_id=trips.route_id
+
+where routes.route_short_name = '001';
